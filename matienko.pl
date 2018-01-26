@@ -8,5 +8,5 @@ ginger(rover).
 white(star).
 pet(X) :- dog(X); cat(X).
 animal(X) :- pet(X) ; horse(X).
-owns(tom, X) :- dog(x), \+ black(X).
+owns(tom, X) :- dog(X), \+ black(X).
 owns(kate, X) :- horse(X) ; black(X).
