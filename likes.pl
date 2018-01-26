@@ -1,3 +1,61 @@
+% e(X,Y) <-> Между X и Y существует переход.
+e(a, b). e(b,c). e(c,f). e(f, g). e(g, i). e(i, h).
+e(f, e). e(e,d). e(d,h).
+% -(X,Y). X-Y  edge(X,Y).
+
+path(X,Y,[Y]):-e(X,Y).
+path(X,Y,[Z|T]):-e(X,Z), path(Z,Y, T).
+
+:-use_module(library(lists)).
+
+bs(L, SL):-
+    swap(L, L1),!,
+    bs(L1,SL).
+bs(L,L).
+
+swap([X,Y|T], [Y,X|T]):-X>Y,!.
+swap([X|T], [X|ST]):-swap(T,ST).
+
+qs([],[]).
+qs([X|T],S):-!,
+    split(T,X, L,G),!,
+    qs(L,SL),!,
+    qs(G,SG),!,
+    lists:append(SL,[X|SG],S).
+
+split([],_,[],[]).
+split([Y|T], X, [Y|TL], G):-
+    Y<X,
+    split(T, X, TL, G).
+
+split([Y|T], X, L, [Y|TG]):-
+    Y>=X,
+    split(T, X, L, TG).
+
+
+pert([],[]).
+pert(L,[X|T]):-del(X,L, TL), pert(TL,T).
+
+del(X,[X|T],T).
+del(X,[Y|T],[Y|T2]):-
+    del(X,T,T2).
+
+the_list([0,1,2,3,4,5,6,7,8,9]).
+
+gen([]).
+gen([X|T]):-
+    the_list(L),
+    lists:member(X,L),
+    gen(T).
+
+lucky([A,B,C,D,E,F]):-
+    gen([A,B,C,D,E]),
+    F is A+B+C-D-E,
+    the_list(L),
+    lists:member(F, L).
+
+
+
 likes(ann, john).
 likes(john,jul).
 likes(alex,jul).
@@ -12,8 +70,8 @@ lt(X,Y,Z):-lt1(X,Y,Z).
 lt(X,Y,Z):-lt2(X,Y,Z).
 
 % L=[a,b,c,d], Q=[1,2,3,4,[2,4]], [].
-% L=[X|T], X=a, T=[b,c,d].
-% K=[v|T], K=[v,b,c,d].
+% L=[X,Y|T], X=a, Y=b, T=[c,d].
+% K=[v|T], K=[v,c,d], [X|T]=[a,c,d].
 
 % bratko.zip
 
