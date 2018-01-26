@@ -140,3 +140,34 @@ df(sin, Arg, cos(Arg)).
 df(lg, Arg, 1/Arg).
 
 % 172.16.19.199
+
+species(flash, dog). % By Definition
+species(mac, cat).
+
+species(X, animal):-species(X, dog).
+species(X, animal):-species(X, cat).
+
+% \+ g(X).
+
+
+% owns(tom, X):-cat(X).
+% owns(kate, X):- ...
+
+% ?- species(Y, animal).
+% ?-      species(X, dog), X=Y. .... X=flash
+
+
+
+
+
+
+% drive(vasya, lena, leha).
+
+%is_a_dog(flash).
+%cat(mactavity).
+
+% ?- species(flash, X).
+% ?- species(Y, dog).
+% animal > dog
+
+% color(flash, black).
