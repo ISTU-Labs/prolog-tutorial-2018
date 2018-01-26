@@ -1,25 +1,25 @@
-dog(flash).
-dog(rover).
-cat(butsi).
-horse(star).
+dog(flash, black).
+dog(rover, red).
+cat(butsi, broun).
+horse(star, white).
 
 black(flash).
 broun(butsi).
 red(rover).
 white(star).
 
-pat(X) :-
-    dog(X);
-    cat(X).
+pat(X, C) :-
+    dog(X, C);
+    cat(X, C).
 
-animal(X) :-
-    pat(X);
-    horse(X).
+animal(X, C) :-
+    pat(X, C);
+    horse(X, C).
 
-owner(tom, X) :-
-    dog(X),
+owner(tom, X, C) :-
+    dog(X, C),
     \+ black(X).
 
-owner(kate, X) :-
-    horse(X);
+owner(kate, X, C) :-
+    horse(X, C);
     black(X).
