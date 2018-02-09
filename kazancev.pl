@@ -184,7 +184,7 @@ dark(X) :-
     black(X).
 */
 %7
-/*
+
 day(marry).
 day(susan).
 day(jane).
@@ -198,7 +198,6 @@ knows(X, Y) :-
 	((day(X), day(Y));
 	(night(X), night(Y))),
 	X \= Y.
-*/
 
 
 

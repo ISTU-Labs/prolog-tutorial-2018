@@ -1,19 +1,25 @@
-% animal(dog,cat,horse).
-% domestic(dog, cat).
 
-dog(flash,black).
-dog(rover,red).
-cat(butsy,brown).
-horse(star,white).
+%  7
+%day(mary).
+%day(suezy).
+%day(jane).
 
-black(flash).
-red(rover).
-brown(butsy).
-white(star).
-
-owner(tom,X,Y):- dog(X,Y), \+ black(X).
-owner(kate,X,Y):- horse(X,Y); black(X).
+%night(sam).
+%night(jane).
+%night(bob).
+%night(patricia).
+%recognize(X,Y):-day(X),day(Y);night(X),night(Y).
 
 
-domestic(X,Y):- dog(X,Y);cat(X,Y).
-animal(X,Y):- domestic(X,Y);horse(X,Y).
+
+
+
+%  8
+
+way(newyork,boston).
+way(newyork,prinston).
+way(newyork,washington).
+way(birlington,newyork).
+way(boston,portland).
+way_is_exist(X,Z):-way(X,Z).
+way_is_exist(X,Z):-way(X,Y),way_is_exist(Y,Z).
