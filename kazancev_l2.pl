@@ -74,6 +74,45 @@ even([_, Evennum | T], [Evennum | ET]) :-
     even(T, ET).
 
 %22
-sumneg([R], 0) :- R > 0, !.
-scumneg([R], R) :- R < 0, !.
-%sumneg([HL | TL], R) :-
+sumneg([], 0) :- !.
+sumneg([_], 0) :- !.
+sumneg([_, R], R) :- R < 0, !.
+sumneg([_, R], 0) :- R > 0, !.
+sumneg([_, X | T], R) :-
+    sumneg(T, R1),
+    R is R1 + X,
+    X < 0.
+
+%15
+sumodd([], 0) :- !.
+sumodd([R], R) :- !.
+sumodd([X, _ | T], R) :-
+    sumodd(T, R1),
+    R is R1 + X.
+
+%26
+word(1, 'one').
+word(2, 'two').
+word(3, 'three').
+word(4, 'four').
+word(5, 'five').
+word(6, 'six').
+word(7, 'seven').
+word(8, 'eight').
+word(9, 'nine').
+word(0, 'zero').
+
+translate([], []) :- !.
+translate([E], [R]) :-
+    word(E, R), !.
+translate([H | T], R) :-
+    R = [HR | TR],
+    word(H, HR),
+    translate(T, TR).
+
+
+%25
+code(0, []) :- !.
+code(N, [1 | TR]) :-
+    N1 is N - 1,
+    code(N1, TR).
